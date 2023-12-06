@@ -1,0 +1,24 @@
+1. I'm going to make a platformer. I need an idea... let's just take an example
+source game, for ease of process. I want to make a game like Cave Story.
+	https://www.youtube.com/watch?v=VQpHejqlzzY
+	
+2. The first step is, I need all the basics of a platformer.
+	2a. That is, I need a player character to control, and a small world for my
+	player character to navigate.
+
+-Wednesday, 4:06 PM
+
+		2b. Going deeper, there are particularities about Quote's movement...
+		I'll have to tweak my player character's parameters, the keyboard
+		inputs, etc.
+		
+3. I'll build a character controller first. I have a lot of experience with
+this, so it should go fast.
+	3a. Actually I'll create a small world for my character controller first,
+	because without a floor I can't move around...
+	
+-4:08 PM
+
+
+
+

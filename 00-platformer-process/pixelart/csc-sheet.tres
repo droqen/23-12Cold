@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sheet" load_steps=3 format=3 uid="uid://bvfljgoby3enw"]
+
+[ext_resource type="Script" path="res://again/sheet/Sheet.gd" id="1_qdj12"]
+[ext_resource type="Texture2D" uid="uid://dy2f5g16qiguw" path="res://pixelart/cave story clone.png" id="2_4661p"]
+
+[resource]
+script = ExtResource("1_qdj12")
+texture = ExtResource("2_4661p")
+hframes = 10
+vframes = 10

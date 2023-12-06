@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dylfsk76deepv"]
+
+[ext_resource type="PackedScene" uid="uid://doygwmpghu05w" path="res://again/board/BoardDisplayPrefab.tscn" id="1_8xxdu"]
+[ext_resource type="PackedScene" uid="uid://crjyg6rqaqqee" path="res://00-wednesday/00-wed.tscn" id="2_f8kms"]
+[ext_resource type="PackedScene" uid="uid://pn5m6cbh3o41" path="res://again/board/UnsplashPrefab.tscn" id="2_fllpb"]
+[ext_resource type="Texture2D" uid="uid://dy2f5g16qiguw" path="res://pixelart/cave story clone.png" id="3_tyk77"]
+
+[node name="Main" type="Node2D"]
+
+[node name="BoardDisplayPrefab" parent="." instance=ExtResource("1_8xxdu")]
+board_scene = ExtResource("2_f8kms")
+
+[node name="ColorRect" parent="BoardDisplayPrefab/Control/MarginContainer" index="0"]
+visible = false
+
+[node name="UnsplashPrefab" parent="." instance=ExtResource("2_fllpb")]
+
+[node name="Sprite2D" parent="UnsplashPrefab" index="0"]
+texture = ExtResource("3_tyk77")
+
+[editable path="BoardDisplayPrefab"]
+[editable path="UnsplashPrefab"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://crjyg6rqaqqee"]
+
+[ext_resource type="Script" path="res://again/board/BoardNode.gd" id="1_hml8p"]
+[ext_resource type="TileSet" uid="uid://cdrjwba2pq2ei" path="res://pixelart/csc-ts.tres" id="2_s614a"]
+[ext_resource type="Texture2D" uid="uid://dy2f5g16qiguw" path="res://pixelart/cave story clone.png" id="3_0faqa"]
+[ext_resource type="Script" path="res://again/pin(input)/PinSetup.gd" id="3_2ltkb"]
+[ext_resource type="Script" path="res://00-wednesday/player.gd" id="4_7knkh"]
+[ext_resource type="Script" path="res://again/sheet/SheetSprite.gd" id="4_gm1j8"]
+[ext_resource type="Resource" uid="uid://bvfljgoby3enw" path="res://pixelart/csc-sheet.tres" id="5_fpo8p"]
+[ext_resource type="Script" path="res://again/pin(input)/Pin.gd" id="8_dvgoo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_785ra"]
+size = Vector2(4, 9)
+
+[node name="00-wed" type="Node2D"]
+script = ExtResource("1_hml8p")
+size = Vector2i(100, 100)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_s614a")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, 65536, 65536, 0, 131073, 0, 0, 196610, 0, 0, 262146, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 393224, 65536, 0, 458760, 65536, 0, 524296, 65536, 0, 524297, 65536, 0, 589833, 65536, 0, 131072, 65536, 0, 196608, 65536, 0, 262144, 65536, 0, 327680, 65536, 0, 393216, 65536, 0, 458752, 65536, 0, 524288, 65536, 0, 589824, 65536, 0, 1, 65536, 0, 65537, 65536, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 65536, 0, 458753, 65536, 0, 524289, 65536, 0, 589825, 65536, 0, 2, 65536, 0, 65538, 65536, 0, 131074, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 0, 0, 524290, 65536, 0, 589826, 65536, 0, 3, 65536, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 393219, 65536, 0, 458755, 0, 0, 524291, 0, 0, 589827, 65536, 0, 4, 65536, 0, 65540, 0, 0, 131076, 0, 0, 196612, 65536, 0, 262148, 0, 0, 393220, 65536, 0, 458756, 0, 0, 524292, 0, 0, 589828, 65536, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 65536, 0, 262149, 0, 0, 393221, 65536, 0, 458757, 0, 0, 524293, 0, 0, 589829, 65536, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 65536, 0, 262150, 0, 0, 393222, 0, 0, 458758, 0, 0, 524294, 65536, 0, 589830, 65536, 0, 7, 0, 0, 65543, 65536, 0, 131079, 65536, 0, 196615, 65536, 0, 262151, 65536, 0, 393223, 0, 0, 458759, 65536, 0, 524295, 65536, 0, 589831, 65536, 0, 8, 65536, 0, 65544, 65536, 0, 131080, 65536, 0, 196616, 65536, 0, 262152, 65536, 0, 327688, 65536, 0, 589832, 65536, 0, 9, 65536, 0, 65545, 65536, 0, 131081, 65536, 0, 196617, 65536, 0, 262153, 65536, 0, 327689, 65536, 0, 393225, 65536, 0, 458761, 65536, 0)
+
+[node name="PinSetup" type="Node" parent="."]
+script = ExtResource("3_2ltkb")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(43, 56)
+script = ExtResource("4_7knkh")
+
+[node name="SheetSprite" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -1)
+texture = ExtResource("3_0faqa")
+hframes = 10
+vframes = 10
+frame = 2
+script = ExtResource("4_gm1j8")
+sprite_sheet = ExtResource("5_fpo8p")
+_frames = Array[int]([2])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_785ra")
+
+[node name="Pin" type="Node" parent="CharacterBody2D"]
+script = ExtResource("8_dvgoo")
