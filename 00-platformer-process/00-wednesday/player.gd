@@ -13,7 +13,7 @@ func _physics_process(_delta):
 	if pin.a.pressed:
 		velocity.y = -55
 	
-	velocity.x = move_toward(velocity.x, pin.stick.x * 20.0, 2.0)
+	velocity.x = move_toward(velocity.x, pin.stick.x * 30.0, 3.0)
 	velocity.y += 1.0
 	
 	if abs(velocity.x) > 0:
