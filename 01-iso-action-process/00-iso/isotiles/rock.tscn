@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl76kbbq80566"]
+
+[ext_resource type="Texture2D" uid="uid://c2fbkki0r2ymn" path="res://pixelart/hell-scape.png" id="1_1xxjo"]
+[ext_resource type="Script" path="res://again/sheet/SheetSprite3D.gd" id="2_t7olw"]
+[ext_resource type="Resource" uid="uid://bljx5y8i8p4tk" path="res://pixelart/hell-shape-sheet.tres" id="3_3rd1o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s2nte"]
+height = 10.0
+radius = 4.0
+
+[node name="rock" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3202, 0, 10.9966)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_s2nte")
+
+[node name="SheetSprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_1xxjo")
+hframes = 11
+vframes = 19
+frame = 4
+script = ExtResource("2_t7olw")
+sprite_sheet = ExtResource("3_3rd1o")
+_frames = Array[int]([4])

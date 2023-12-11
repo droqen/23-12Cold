@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sheet" load_steps=3 format=3 uid="uid://bljx5y8i8p4tk"]
+
+[ext_resource type="Script" path="res://again/sheet/Sheet.gd" id="1_xj6pg"]
+[ext_resource type="Texture2D" uid="uid://c2fbkki0r2ymn" path="res://pixelart/hell-scape.png" id="2_3mxbs"]
+
+[resource]
+script = ExtResource("1_xj6pg")
+texture = ExtResource("2_3mxbs")
+hframes = 11
+vframes = 19

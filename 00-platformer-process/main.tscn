@@ -7,16 +7,17 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="UnsplashPrefab" parent="." instance=ExtResource("2_fllpb")]
+pause_during_anim = false
+
+[node name="Sprite2D" parent="UnsplashPrefab" index="0"]
+texture = ExtResource("3_tyk77")
+
 [node name="BoardDisplayPrefab" parent="." instance=ExtResource("1_8xxdu")]
 board_scene = ExtResource("2_f8kms")
 
 [node name="ColorRect" parent="BoardDisplayPrefab/Control/MarginContainer" index="0"]
 visible = false
 
-[node name="UnsplashPrefab" parent="." instance=ExtResource("2_fllpb")]
-
-[node name="Sprite2D" parent="UnsplashPrefab" index="0"]
-texture = ExtResource("3_tyk77")
-
-[editable path="BoardDisplayPrefab"]
 [editable path="UnsplashPrefab"]
+[editable path="BoardDisplayPrefab"]

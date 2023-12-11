@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://clkc7bh1eruu8"]
+
+[ext_resource type="Script" path="res://00-wednesday/shot.gd" id="1_kb2bq"]
+[ext_resource type="Texture2D" uid="uid://dy2f5g16qiguw" path="res://pixelart/cave story clone.png" id="1_s6yqs"]
+[ext_resource type="Script" path="res://again/sheet/SheetSprite.gd" id="2_tsmad"]
+[ext_resource type="Resource" uid="uid://bvfljgoby3enw" path="res://pixelart/csc-sheet.tres" id="3_vura6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duh6m"]
+size = Vector2(2, 2)
+
+[node name="Shot" type="Area2D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_kb2bq")
+
+[node name="SheetSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_s6yqs")
+hframes = 10
+vframes = 10
+frame = 5
+script = ExtResource("2_tsmad")
+sprite_sheet = ExtResource("3_vura6")
+_frames = Array[int]([5])
+_frame_period = 0
+
+[node name="PopAnim" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_s6yqs")
+hframes = 10
+vframes = 10
+frame = 8
+script = ExtResource("2_tsmad")
+sprite_sheet = ExtResource("3_vura6")
+_frames = Array[int]([6, 7, 8, 9])
+_frame_period = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_duh6m")

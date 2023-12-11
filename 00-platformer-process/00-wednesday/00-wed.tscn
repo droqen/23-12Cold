@@ -13,6 +13,7 @@
 size = Vector2(4, 9)
 
 [node name="00-wed" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_hml8p")
 size = Vector2i(100, 100)
 
@@ -24,11 +25,13 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 0, 65536, 65536, 0, 131073, 0, 0,
 [node name="PinSetup" type="Node" parent="."]
 script = ExtResource("3_2ltkb")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(43, 56)
+collision_layer = 4
 script = ExtResource("4_7knkh")
 
-[node name="SheetSprite" type="Sprite2D" parent="CharacterBody2D"]
+[node name="SheetSprite" type="Sprite2D" parent="player"]
+z_index = 1
 position = Vector2(0, -1)
 texture = ExtResource("3_0faqa")
 hframes = 10
@@ -38,9 +41,9 @@ script = ExtResource("4_gm1j8")
 sprite_sheet = ExtResource("5_fpo8p")
 _frames = Array[int]([2])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_785ra")
 
-[node name="Pin" type="Node" parent="CharacterBody2D"]
+[node name="Pin" type="Node" parent="player"]
 script = ExtResource("8_dvgoo")

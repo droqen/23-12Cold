@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://bfftm57klcbgm"]
+
+[ext_resource type="PackedScene" uid="uid://p380026hb5yc" path="res://00-iso/orbitcam.tscn" id="1_p3ghb"]
+[ext_resource type="Script" path="res://tilemap-floorplane.gd" id="2_7ch8s"]
+[ext_resource type="Texture2D" uid="uid://c2fbkki0r2ymn" path="res://pixelart/hell-scape.png" id="2_iy6c5"]
+[ext_resource type="Script" path="res://again/sheet/SheetSprite3D.gd" id="3_5mkvj"]
+[ext_resource type="Resource" uid="uid://bljx5y8i8p4tk" path="res://pixelart/hell-shape-sheet.tres" id="4_7p7gr"]
+[ext_resource type="Script" path="res://mouseclicker.gd" id="5_wd0mt"]
+[ext_resource type="PackedScene" uid="uid://wmebyep0o2p5" path="res://00-iso/isotilemap.tscn" id="6_uy8o6"]
+[ext_resource type="Script" path="res://00-iso/iso-player.gd" id="8_hkny6"]
+[ext_resource type="Script" path="res://again/pin(input)/PinSetup.gd" id="9_0l7dj"]
+[ext_resource type="Script" path="res://again/pin(input)/Pin.gd" id="10_lmsd2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y2km2"]
+viewport_path = NodePath("tilemap-floorplane/vp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ri8x1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_y2km2")
+grow_amount = 9.818
+distance_fade_min_distance = 2.0
+distance_fade_max_distance = 3.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c3w6c"]
+material = SubResource("StandardMaterial3D_ri8x1")
+size = Vector2(100, 100)
+
+[sub_resource type="Environment" id="Environment_twdnk"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_d2p30"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c3560"]
+height = 10.0
+radius = 4.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="orbitcam" parent="." instance=ExtResource("1_p3ghb")]
+pitch = -35.0
+view_size = 100.0
+current = true
+
+[node name="pitch" parent="orbitcam/yaw" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0)
+
+[node name="cam" parent="orbitcam/yaw/pitch" index="0"]
+current = true
+size = 100.0
+
+[node name="tilemap-floorplane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_c3w6c")
+script = ExtResource("2_7ch8s")
+
+[node name="vp" type="SubViewport" parent="tilemap-floorplane"]
+size = Vector2i(100, 100)
+
+[node name="Isotilemap" parent="tilemap-floorplane/vp" instance=ExtResource("6_uy8o6")]
+texture_filter = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_twdnk")
+
+[node name="lil guy" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918945, 0.0504883, -0.77002)
+visible = false
+billboard = 1
+transparent = false
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_iy6c5")
+hframes = 11
+vframes = 19
+frame = 3
+script = ExtResource("3_5mkvj")
+sprite_sheet = ExtResource("4_7p7gr")
+_frames = Array[int]([2, 3])
+
+[node name="lil guy2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.646, 0.05, 0.123848)
+visible = false
+billboard = 1
+transparent = false
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_iy6c5")
+hframes = 11
+vframes = 19
+frame = 3
+script = ExtResource("3_5mkvj")
+sprite_sheet = ExtResource("4_7p7gr")
+_frames = Array[int]([2, 3])
+
+[node name="mouseclicker" type="Node" parent="." node_paths=PackedStringArray("cam", "cursor_obj")]
+script = ExtResource("5_wd0mt")
+cam = NodePath("../orbitcam/yaw/pitch/cam")
+cursor_obj = NodePath("../player")
+
+[node name="mouse_ray" type="RayCast3D" parent="mouseclicker"]
+enabled = false
+collision_mask = 128
+
+[node name="mouse_plane" type="StaticBody3D" parent="."]
+collision_layer = 129
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mouse_plane"]
+shape = SubResource("WorldBoundaryShape3D_d2p30")
+
+[node name="player" type="CharacterBody3D" parent="."]
+collision_layer = 4
+script = ExtResource("8_hkny6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_c3560")
+
+[node name="SheetSprite3D" type="Sprite3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_iy6c5")
+hframes = 11
+vframes = 19
+frame = 3
+script = ExtResource("3_5mkvj")
+sprite_sheet = ExtResource("4_7p7gr")
+_frames = Array[int]([2, 3])
+
+[node name="PinSetup" type="Node" parent="player"]
+script = ExtResource("9_0l7dj")
+
+[node name="Pin" type="Node" parent="player"]
+script = ExtResource("10_lmsd2")
+
+[editable path="orbitcam"]

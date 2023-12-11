@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://p380026hb5yc"]
+
+[ext_resource type="Script" path="res://00-iso/orbitcam.gd" id="1_rv2a6"]
+
+[node name="orbitcam" type="Marker3D"]
+script = ExtResource("1_rv2a6")
+
+[node name="yaw" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="pitch" type="Node3D" parent="yaw"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
+
+[node name="cam" type="Camera3D" parent="yaw/pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.38419e-07, 0, 0, 1, 0, 0, 1000)
+projection = 1
+size = 4.0
+
+[node name="camray" type="RayCast3D" parent="yaw/pitch/cam"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.78814e-07, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
