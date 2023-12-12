@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="01-iso-action-process"
+config/name="Diablo Demake"
+config/description="design notes @ https://kinopio.club/diablo-demake-59bh8jt4CeQEcKzJ4joNO"
 run/main_scene="res://isocam.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [layer_names]
 

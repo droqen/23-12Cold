@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://c2h7502p5qc0h" path="res://00-iso/hell-tileset.tres" id="2_0vd4y"]
 
 [node name="Isotilemap" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_0kvid")
 size = Vector2i(100, 100)
 
