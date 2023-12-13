@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnm0pp1di5pmi"]
+
+[ext_resource type="PackedScene" uid="uid://doygwmpghu05w" path="res://again/board/BoardDisplayPrefab.tscn" id="1_se3bh"]
+[ext_resource type="PackedScene" uid="uid://doo4kq0vwybk8" path="res://01-pure-path/pure-path-board.tscn" id="2_dc7lw"]
+[ext_resource type="PackedScene" uid="uid://pn5m6cbh3o41" path="res://again/board/UnsplashPrefab.tscn" id="2_hp15r"]
+
+[node name="Pure-path-main" type="Node2D"]
+
+[node name="BoardDisplayPrefab" parent="." instance=ExtResource("1_se3bh")]
+board_scene = ExtResource("2_dc7lw")
+
+[node name="UnsplashPrefab" parent="." instance=ExtResource("2_hp15r")]
+pause_during_anim = false
