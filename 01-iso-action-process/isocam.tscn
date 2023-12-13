@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfftm57klcbgm"]
+[gd_scene load_steps=19 format=3 uid="uid://bfftm57klcbgm"]
 
 [ext_resource type="PackedScene" uid="uid://p380026hb5yc" path="res://00-iso/orbitcam.tscn" id="1_p3ghb"]
 [ext_resource type="Script" path="res://tilemap-floorplane.gd" id="2_7ch8s"]
@@ -25,6 +25,8 @@ distance_fade_max_distance = 3.0
 material = SubResource("StandardMaterial3D_ri8x1")
 size = Vector2(100, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi8fl"]
+
 [sub_resource type="Environment" id="Environment_twdnk"]
 background_mode = 1
 ambient_light_source = 2
@@ -36,12 +38,17 @@ ambient_light_color = Color(1, 1, 1, 1)
 height = 10.0
 radius = 4.0
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_euqul"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="orbitcam" parent="." instance=ExtResource("1_p3ghb")]
 pitch = -35.0
 view_size = 100.0
 current = true
+
+[node name="yaw" parent="orbitcam" index="0"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="pitch" parent="orbitcam/yaw" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0)
@@ -52,6 +59,7 @@ size = 100.0
 
 [node name="tilemap-floorplane" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_c3w6c")
+surface_material_override/0 = SubResource("StandardMaterial3D_hi8fl")
 script = ExtResource("2_7ch8s")
 
 [node name="vp" type="SubViewport" parent="tilemap-floorplane"]
@@ -135,5 +143,8 @@ script = ExtResource("9_0l7dj")
 
 [node name="Pin" type="Node" parent="player"]
 script = ExtResource("10_lmsd2")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_euqul")
 
 [editable path="orbitcam"]

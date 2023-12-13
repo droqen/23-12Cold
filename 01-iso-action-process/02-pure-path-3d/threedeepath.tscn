@@ -1,0 +1,133 @@
+[gd_scene load_steps=17 format=3 uid="uid://dba4lq7stn3l0"]
+
+[ext_resource type="PackedScene" uid="uid://p380026hb5yc" path="res://00-iso/orbitcam.tscn" id="1_4d0n7"]
+[ext_resource type="Script" path="res://02-pure-path-3d/NavTester.gd" id="2_q6ffr"]
+[ext_resource type="Texture2D" uid="uid://c2fbkki0r2ymn" path="res://pixelart/hell-scape.png" id="3_flb5e"]
+[ext_resource type="Script" path="res://mouseclicker.gd" id="3_lv8ml"]
+[ext_resource type="Script" path="res://02-pure-path-3d/NavTesterSprite.gd" id="3_qx03k"]
+[ext_resource type="Script" path="res://again/sheet/SheetSprite3D.gd" id="4_jmlo6"]
+[ext_resource type="Resource" uid="uid://bljx5y8i8p4tk" path="res://pixelart/hell-shape-sheet.tres" id="5_u882c"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_oar8v"]
+vertices = PackedVector3Array(0, 0.416473, 4.5, 0, 0.416473, 2.75, -1.25, 0.416473, 1.75, -4.5, 0.416473, 4.5, -1, 0.416473, -1, -1.25, 0.416473, -4.5, -4.5, 0.416473, -4.5, -4.5, 0.416473, 4.5, -1.25, 0.416473, 1.75, 2, 0.416473, 1.75, 0, 0.416473, 2.75, 0, 0.416473, 4.5, 4.5, 0.416473, 4.5, 2.25, 0.416473, -1, 2, 0.416473, 1.75, 4.5, 0.416473, 4.5, 4.5, 0.416473, -4.5, -1.25, 0.416473, -4.5, -1, 0.416473, -1, 2.25, 0.416473, -1, 4.5, 0.416473, -4.5, 0, 1.66647, 0.75, 0.5, 1.66647, 1, 1, 1.66647, 1, 1.25, 1.66647, 0, 0, 1.66647, -0.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(24, 21, 25)]
+agent_radius = 0.38
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dlo2n"]
+size = Vector2(10, 10)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fg88t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8jh8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hs0j8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mntnp"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_00d2o"]
+
+[sub_resource type="Sky" id="Sky_wls1s"]
+sky_material = SubResource("ProceduralSkyMaterial_00d2o")
+
+[sub_resource type="Environment" id="Environment_l352b"]
+background_mode = 2
+sky = SubResource("Sky_wls1s")
+
+[node name="Threedeepath" type="Node3D"]
+
+[node name="orbitcam" parent="." instance=ExtResource("1_4d0n7")]
+yaw = 40.0
+pitch = -40.0
+view_size = 8.0
+current = true
+
+[node name="yaw" parent="orbitcam" index="0"]
+transform = Transform3D(0.766045, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766045, 0, 0, 0)
+
+[node name="pitch" parent="orbitcam/yaw" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766045, 0, 0, 0)
+
+[node name="cam" parent="orbitcam/yaw/pitch" index="0"]
+current = true
+size = 8.0
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_oar8v")
+
+[node name="floor" type="StaticBody3D" parent="NavigationRegion3D"]
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/floor"]
+mesh = SubResource("PlaneMesh_dlo2n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/floor"]
+shape = SubResource("WorldBoundaryShape3D_fg88t")
+
+[node name="cube" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.873517, 0, 0.486793, 0, 1, 0, -0.486793, 0, 0.873517, 0.0942383, 0.378906, 1.38062)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/cube"]
+mesh = SubResource("BoxMesh_g8jh8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/cube"]
+shape = SubResource("BoxShape3D_hs0j8")
+
+[node name="cube2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1.91906, 0, -0.149349, 0, 1.92487, 0, 0.149349, 0, 1.91906, 0.515259, 0.378906, 0.297424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/cube2"]
+mesh = SubResource("BoxMesh_g8jh8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/cube2"]
+shape = SubResource("BoxShape3D_hs0j8")
+
+[node name="NavTester" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.427, 0.75, 0.221)
+script = ExtResource("2_q6ffr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavTester"]
+path_desired_distance = 0.5
+target_desired_distance = 0.1
+
+[node name="NavTesterSprite" type="Node3D" parent="NavTester"]
+script = ExtResource("3_qx03k")
+
+[node name="SheetSprite3D" type="Sprite3D" parent="NavTester/NavTesterSprite"]
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("3_flb5e")
+hframes = 11
+vframes = 19
+frame = 3
+script = ExtResource("4_jmlo6")
+sprite_sheet = ExtResource("5_u882c")
+_frames = Array[int]([2, 3])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavTester"]
+visible = false
+mesh = SubResource("CapsuleMesh_mntnp")
+
+[node name="target" type="Node" parent="NavTester"]
+
+[node name="marker" type="Marker3D" parent="NavTester/target"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49976, 0, 2.60431)
+
+[node name="above" type="Marker3D" parent="NavTester/target/marker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l352b")
+
+[node name="mouseclicker" type="Node" parent="." node_paths=PackedStringArray("cam", "cursor_obj")]
+script = ExtResource("3_lv8ml")
+cam = NodePath("../orbitcam/yaw/pitch/cam")
+cursor_obj = NodePath("../NavTester/target/marker")
+
+[node name="mouse_ray" type="RayCast3D" parent="mouseclicker"]
+collision_mask = 2
+
+[editable path="orbitcam"]
